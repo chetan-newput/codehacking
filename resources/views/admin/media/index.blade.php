@@ -20,7 +20,7 @@
                       <tr>
                         <td>{{$photo->id}}</td>
                         <td><image height="50" src="{{ $photo->file ? $photo->file : 'http://www.placehold.it/400x400'}}" alt=""/></td>
-                        <td>{{$photo->create_at ? $photo->create_at->diffForHumans() : 'No Date' }}</td>
+                        <td>{{$photo->created_at ? $photo->created_at->diffForHumans() : 'No Date' }}</td>
                         <td>
                         {!! Form::model($photo,['method'=>'DELETE', 'action'=>['AdminMediasController@destroy', $photo->id]]) !!}
                             <div class="form-group">
