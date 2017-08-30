@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests;
 use App\Http\Requests\PostsCreateRequest;
+use App\Http\Requests\PostsEditRequest;
 use App\Photo;
 use App\Post;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class AdminPostsController extends Controller
     public function create()
     {
 
-        $categories = Category::lists('name','id')->all();
+        $categories = Category::pluck('name','id')->all();
 
         return view('admin.posts.create',compact('categories'));
     }
@@ -85,7 +86,7 @@ class AdminPostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $categories = Category::lists('name','id')->all();
+        $categories = Category::pluck('name','id')->all();
 
         return view('admin.posts.edit', compact('post','categories'));
     }
@@ -97,7 +98,7 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostsCreateRequest $request, $id)
+    public function update(PostsEditRequest $request, $id)
     {
         $input = $request->all();
 
@@ -141,7 +142,8 @@ class AdminPostsController extends Controller
 
     public function post($id)
     {
-        $post = Post::findOrFail($id);
+        //$post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($id);;
 
         $comments = $post->comments()->whereIsActive(1)->get();
 

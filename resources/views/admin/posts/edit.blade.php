@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1>Create Post</h1>
+	<h1>Edit Post</h1>
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="{{ $post->photo ? $post->photo->file : 'http://www.placehold.it/400x400'}}" class="img-responsive img-rounded" />
@@ -26,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				{!! Form::submit('
-				Create Post', ['class'=>'btn btn-primary col-sm-6'])!!}
+				Update Post', ['class'=>'btn btn-primary col-sm-6'])!!}
 			</div>
 		{!! Form::close() !!}
 

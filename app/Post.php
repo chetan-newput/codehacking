@@ -1,22 +1,14 @@
 <?php
 
 namespace App;
-//use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    /*use Sluggable;
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-                'onUpdate' => true,
-            ]
-        ];
-    }*/
+    use Sluggable;
+    use SluggableScopeHelpers;
 
 
     protected $fillable = [
@@ -25,6 +17,15 @@ class Post extends Model
     	'title',
     	'body',
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function user()
     {
