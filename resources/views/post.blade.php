@@ -27,7 +27,10 @@
   <p class="lead">{!! $post->body !!}</p>
 
   <hr>
+  <!-- DISQUS Comments System -->
+  @include('includes.disqus-comment')
 
+{{-- 
   <!-- Blog Comments -->
 
   @if(Session::has('comment_message'))
@@ -109,15 +112,18 @@
   @endforeach
 @endif
 
+ --}}
+
 @stop
 
 @section('scripts')
-  <script type="text/javascript">
+  <script id="dsq-count-scr" src="//codehacking-laravel.disqus.com/count.js" async></script>
+  {{-- <script type="text/javascript">
     $(function() {
       $("button.toggle-reply").click(function() {
         $(this).next().slideToggle("slow");
       }); 
     });
-  </script>
+  </script> --}}
 @stop
 
