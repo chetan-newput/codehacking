@@ -9,11 +9,11 @@
             {{method_field('delete')}}
             <div class="form-group">
                 <select name="checkBoxArray" class="form-control">
-                    <option value="delete">Delete</option>
+                    <option value="">Delete</option>
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn-primary" value="Go" />
+                <input type="submit" name="delete_all" class="btn-primary" value="Go" />
             </div>
             
             <table class="table">
@@ -33,11 +33,11 @@
                         <td><image height="50" src="{{ $photo->file ? $photo->file : 'http://www.placehold.it/400x400'}}" alt="" /></td>
                         <td>{{$photo->created_at ? $photo->created_at->diffForHumans() : 'No Date' }}</td>
                         <td>
-                        {!! Form::model($photo,['method'=>'DELETE', 'action'=>['AdminMediasController@destroy', $photo->id]]) !!}
+                            <input type="hidden" name="photo" value="{{$photo->id}}" />
                             <div class="form-group">
-                                {!! Form::submit('Delete Photo', ['class'=>'btn btn-danger'])!!}
+                               <input type="submit" name="delete_single" class="btn btn-danger" value="Delete"/>
                             </div>
-                        {!! Form::close() !!}
+                      
                         </td>
                         
                       </tr>
