@@ -61,7 +61,7 @@ class AdminMediasController extends Controller
         if(isset($request->delete_all) && !empty($request->photo)){
             $photos = Photo::findOrFail($request->checkBoxArray);
             foreach ($photos as $photo) {
-                $photo->delete();
+                $this->destroy($photo->id);
             }
         } 
 
